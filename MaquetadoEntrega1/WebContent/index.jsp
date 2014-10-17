@@ -12,7 +12,7 @@
 	<div class="row" style="margin-top: 4%; margin-left: 6%; margin-right: 60%">
 	<h1 class="titulo"> Info PooL </h1>	
 	
-    <form role="form" action="#" method="post">        
+    <form role="form" action="indexAdmin.jsp" method="post">        
 	        <div class="form-group">
 	          
 	           <strong><label for="usario">Username</label></strong>
@@ -26,17 +26,12 @@
 	        </div>
 	     
 	     <div class="col-sm-6">
-	     	<button type="submit" class="btn btn-primary" disabled="disabled">Ingresar</button>	     	
+	     	<button type="submit" class="btn btn-primary" >Ingresar</button>	     	
 	     </div>
 	      <div class="col-sm-6">
-	     	<button type="submit" class="btn btn-default" disabled="disabled">Registrarse</button>	     	
+	     	<a href="registroViajero.jsp"><button type="button" class="btn btn-default">Registrarse</button>	   </a>  	
 	     </div>
-	      <div class="col-sm-6">
-	     	    <a href="indexAdmin.jsp">ingresar como admin</a>	
-	     </div>
-	      <div class="col-sm-6">
-	     	<a href="indexCliente.jsp">ingresar como cliente</a>	     	
-	     </div>	  
+
 	     
 	     
         

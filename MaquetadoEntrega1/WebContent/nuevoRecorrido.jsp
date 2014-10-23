@@ -74,7 +74,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 			<div class="form-group">
 				<label for="periodico">Recorrido Google Maps : </label>
 				
-			</div><div id="googleMap" style="width:500px;height:380px;"></div>
+			</div><iframe src="https://www.google.com/maps/embed?pb=!1m29!1m12!1m3!1d6544.50937677793!2d-57.942819606872106!3d-34.90005751354852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m14!1i0!3e6!4m5!1s0x95a2e6433123af13%3A0x33033750a90032bc!2sCalle+13+41%2C+La+Plata%2C+Buenos+Aires!3m2!1d-34.8973175!2d-57.9426821!4m5!1s0x95a2e66b83557fd1%3A0xb4b8ff92218fc902!2sFacultad+de+Inform%C3%A1tica+-+Universidad+Nacional+de+La+Plata%2C+Calle+50+120%2C+1900+La+Plata%2C+Buenos+Aires!3m2!1d-34.903605!2d-57.937726!5e0!3m2!1ses!2sar!4v1414091829518" width="600" height="450" frameborder="0" style="border:0"></iframe></div>
 			</div>
 			
 	     

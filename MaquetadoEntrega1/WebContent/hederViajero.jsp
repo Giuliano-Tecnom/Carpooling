@@ -42,16 +42,10 @@
                       </li>  
                       <li>  
                           <a href="recorridosPropios.jsp">  Recorridos propios </a>  
-                      </li>                          
-                      <li>  
-                          <a href="borrarRecorrido.jsp"> Borrar Recorrido </a>  
-                      </li>  
+                      </li>                           
                        <li>  
                           <a href="recorridosOtros.jsp"> Recorridos de otros </a>  
-                      </li>  
-                      <li>  
-                          <a href="participarRecorridos.jsp"> Participar de recorridos </a>  
-                      </li>   
+                      </li>     
                       <li>  
                           <a href="calificarUsuarios.jsp"> Calificar Usuarios </a>  
                       </li>   

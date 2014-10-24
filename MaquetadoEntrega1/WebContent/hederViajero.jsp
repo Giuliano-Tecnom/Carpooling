@@ -47,7 +47,7 @@
                           <a href="recorridosOtros.jsp"> Recorridos de otros </a>  
                       </li>     
                       <li>  
-                          <a href="calificarUsuarios.jsp"> Calificar Usuarios </a>  
+                          <a href="calificaciones.jsp"> Calificaciones</a>  
                       </li>   
                       <li>  
                           <a href="mensajes.jsp">Mensajes</a>  

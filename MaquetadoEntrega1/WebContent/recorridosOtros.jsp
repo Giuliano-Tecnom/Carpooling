@@ -39,29 +39,42 @@
  					<thead>
 			            <tr>   
 			                <th>Viajero</th>   
-			                <th>Diario</th>
-			                <th>Periodico</th>
-			                <th>Puntual</th>
 			                <th>Tipo Viaje</th>  
+			                <th>Ida/Vuelta</th> 
 			                <th>Hora Salida</th>
 			                <th>Hora Partida</th>          
 			                <th>Direccion desde</th> 
 			                <th>Direccion hasta</th> 
-			                <th style="width:166px;">Acciones</th>			              
+			                <th>Calificacion</th>		              
 			            </tr>
+			            
 			        </thead>
 			        <tbody>
 			            <tr>
-							<td>Conductor</td>			            
-			                <td>-</td>
-			                <td>-</td>
-			                <td>31/10/2014</td>
+							<td>Conductor</td>	
+							<td>Puntual 31/10/2014</td>		            
 			                <td>Ida/Vuelta</td>
 			                <td>11:00</td>		
 			                <td>14:00</td>		
 			                <td>13 y 32 , La Plata</td>	
-			                <td>50 y 120, La Plata</td>		                         
-			                <td><a href="#" class="btn btn-info">Participar</a><a href="" class="btn btn-danger">Cancelar</a></td>
+			                <td>50 y 120, La Plata</td>		
+			                <td>100% Positiva</td>                         
+			                <td><a href="#" class="btn btn-danger">Cancelar</a></td>
+			                <td><a href="calificar.jsp"  class="btn btn-info">Calificar</a></td>
+			                
+			
+			            </tr>
+			            <tr>
+							<td>Conductor</td>	
+							<td>Puntual 31/10/2014</td>		            
+			                <td>Ida/Vuelta</td>
+			                <td>11:00</td>		
+			                <td>14:00</td>		
+			                <td>13 y 32 , La Plata</td>	
+			                <td>50 y 120, La Plata</td>		
+			                <td>100% Positiva</td>                         
+			                <td><a href="#" class="btn btn-info">Participar</a></td>
+			                <td><a href="" disabled="disabled" class="btn btn-info">Calificar</a></td>
 			                
 			
 			            </tr>
@@ -85,13 +98,13 @@
 			            <tr>   
 			                <th>Viajero</th>  
 			                <th>Evento</th> 
-			                <th>Puntual</th>
-			                <th>Tipo Viaje</th>  
+			                <th>Tipo Viaje</th> 
+			                <th>Ida/Vuelta</th> 
 			                <th>Hora Salida</th>
 			                <th>Hora Vuelta</th>          
 			                <th>Direccion desde</th> 
-			                <th>Direccion hasta</th> 
-			                <th style="width:166px;">Acciones</th>			              
+			                <th>Direccion hasta</th>
+			                <th>Calificacion</th> 		              
 			            </tr>
 			        </thead>
 			        <tbody>
@@ -99,13 +112,14 @@
 							<td>Conductor</td>	
 							<td>CACIC</td>		            
 
-			                <td>31/10/2014</td>
+			                <td>Puntual 31/10/2014</td>
 			                <td>Ida/Vuelta</td>
 			                <td>11:00</td>		
 			                <td>14:00</td>		
 			                <td>13 y 32 , La Plata</td>	
-			                <td>50 y 120, La Plata</td>		                         
-			                <td><a href="#" class="btn btn-info">Participar</a><a href="" class="btn btn-danger">Cancelar</a></td>
+			                <td>50 y 120, La Plata</td>	
+			                <td>95% Positiva 5% Negativa</td>	                         
+			                <td><a href="#" class="btn btn-info">Participar</a></td><td><a href="" disabled="disabled" class="btn btn-info" >Calificar</a></td>
 			                
 			
 			            </tr>

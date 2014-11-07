@@ -8,34 +8,44 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import modelo.Usuario.Tipo;
+
 @Entity
 public class Puntaje implements Serializable {
 
+
+	public enum TipoPuntaje {
+		MUYBUENO, BUENO, MALO, MUYMALO, EXCELENTE
+	}
+	
 	/**
 	 * 
 	 */
 	@Id
 	@GeneratedValue
-	private long id;
+	private long id;	
 	
-	@ElementCollection
-	@CollectionTable(name="PUNTAJE", joinColumns=@JoinColumn(name="ID_PUNTAJE"))
-	@Column(name="PUNTAJE")
-	private List<Integer> puntajes = null; //esta atributo representa a los puntajes recibidos en un viaje por todos los que viajaban en ese viaje y puntuaron al usuario
+	@Column(name="TIPO_PUNTAJE") 
+	@Enumerated(EnumType.ORDINAL) 	
+	private TipoPuntaje tipoPuntaje = null;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO")
 	private Usuario usuario = null; //esta atributo representa el usuario a puntuar
 	
-	@ManyToOne
-	@JoinColumn(name = "ID_RECORRIDO")
-	private Recorrido viaje = null; //este atributo representa el viaje por el cual se puntuo al usuario
+	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(name="ID_USUARIO")	
+	private List<UsuarioRecorrido> usuariosQuePuntuaron = null;
+	
+	private boolean activo = false;
 	
 	private static final long serialVersionUID = -7830176998380700150L;
 
@@ -43,11 +53,12 @@ public class Puntaje implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Puntaje(List<Integer> puntajes, Usuario usuario, Recorrido viaje) {
+	public Puntaje(TipoPuntaje tipoPuntaje, Usuario usuario, List<UsuarioRecorrido> viaje,boolean activo) {
 		super();
-		this.puntajes = puntajes;
+		this.tipoPuntaje = tipoPuntaje;
 		this.usuario = usuario;
-		this.viaje = viaje;
+		this.usuariosQuePuntuaron = viaje;
+		this.activo = activo;
 	}
 
 	private long getId() {
@@ -57,13 +68,14 @@ public class Puntaje implements Serializable {
 	private void setId(long id) {
 		this.id = id;
 	}
+	
 
-	public List<Integer> getPuntajes() {
-		return puntajes;
+	public TipoPuntaje getTipoPuntaje() {
+		return tipoPuntaje;
 	}
 
-	public void setPuntajes(List<Integer> puntajes) {
-		this.puntajes = puntajes;
+	public void setTipoPuntaje(TipoPuntaje tipoPuntaje) {
+		this.tipoPuntaje = tipoPuntaje;
 	}
 
 	public Usuario getUsuario() {
@@ -74,13 +86,23 @@ public class Puntaje implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public Recorrido getViaje() {
-		return viaje;
+	public List<UsuarioRecorrido> getUsuariosQuePuntuaron() {
+		return usuariosQuePuntuaron;
 	}
 
-	public void setViaje(Recorrido viaje) {
-		this.viaje = viaje;
+	public void setUsuariosQuePuntuaron(List<UsuarioRecorrido> usuariosQuePuntuaron) {
+		this.usuariosQuePuntuaron = usuariosQuePuntuaron;
 	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+	
+	
 
 	
 }

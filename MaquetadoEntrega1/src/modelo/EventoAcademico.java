@@ -22,6 +22,8 @@ public class EventoAcademico implements Serializable {
 	private String direccion = null;
 	private Date fechaDeCreacion = null;
 	
+	private boolean activo = false;
+	
 	private static final long serialVersionUID = 2237197716747634048L;
 
 	public EventoAcademico() {
@@ -29,12 +31,13 @@ public class EventoAcademico implements Serializable {
 	}
 
 	public EventoAcademico(String nombre, String telefono, String direccion,
-			Date fechaDeCreacion) {
+			Date fechaDeCreacion,boolean activo) {
 		super();
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.direccion = direccion;
 		this.fechaDeCreacion = fechaDeCreacion;
+		this.activo = activo;
 	}
 
 	private long getId() {
@@ -75,6 +78,14 @@ public class EventoAcademico implements Serializable {
 
 	public void setFechaDeCreacion(Date fechaDeCreacion) {
 		this.fechaDeCreacion = fechaDeCreacion;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 	
 	

@@ -16,6 +16,7 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
 <class>modelo.Puntaje</class>
 <class>modelo.Recorrido</class>
 <class>modelo.Usuario</class>
+<class>modelo.UsuarioRecorrido</class>
 
 <properties>
 

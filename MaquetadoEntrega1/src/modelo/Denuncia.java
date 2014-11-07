@@ -20,6 +20,7 @@ public class Denuncia implements Serializable {
 	private long id;
 	private String descripcion = null;
 	private Date fecha = null;
+	private boolean activo = false;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO")
@@ -31,14 +32,32 @@ public class Denuncia implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Denuncia(String descripcion, Date fecha) {
+	public Denuncia(String descripcion, Date fecha, boolean activo, Usuario dirigida) {
 		super();
 		this.descripcion = descripcion;
 		this.fecha = fecha;
+		this.activo = activo;
+		this.dirigida = dirigida;
 	}
 
 	private long getId() {
 		return id;
+	}	
+	
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+
+	public Usuario getDirigida() {
+		return dirigida;
+	}
+
+	public void setDirigida(Usuario dirigida) {
+		this.dirigida = dirigida;
 	}
 
 	private void setId(long id) {

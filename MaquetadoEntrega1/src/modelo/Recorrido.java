@@ -66,6 +66,8 @@ public class Recorrido implements Serializable {
 	@JoinColumn(name="ID_USUARIO")	
 	private List<Usuario> participantesDelRecorrido = null;
 	
+	private boolean activo = false;
+	
 	private static final long serialVersionUID = -6472496352531938439L;
 
 	public Recorrido() {
@@ -75,7 +77,7 @@ public class Recorrido implements Serializable {
 	public Recorrido(Tipo tipo, List<String> dias, Time horaPartida,
 			Time horaLlegada, String direccionDesde, String direccionHasta,
 			String urlGoogleMaps, Date fecha, Registro tipoDeRegistro,
-			EventoAcademico evento, List<Usuario> participantesDelRecorrido) {
+			EventoAcademico evento, List<Usuario> participantesDelRecorrido, boolean activo) {
 		super();
 		this.tipo = tipo;
 		this.dias = dias;
@@ -88,6 +90,7 @@ public class Recorrido implements Serializable {
 		this.tipoDeRegistro = tipoDeRegistro;
 		this.evento = evento;
 		this.participantesDelRecorrido = participantesDelRecorrido;
+		this.activo = activo;
 	}
 
 	private long getId() {
@@ -184,6 +187,14 @@ public class Recorrido implements Serializable {
 
 	public void setParticipantesDelRecorrido(List<Usuario> participantesDelRecorrido) {
 		this.participantesDelRecorrido = participantesDelRecorrido;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 	
 	

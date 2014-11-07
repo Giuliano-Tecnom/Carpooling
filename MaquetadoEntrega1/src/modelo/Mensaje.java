@@ -32,18 +32,21 @@ public class Mensaje implements Serializable {
 	@JoinColumn(name = "ID_USUARIO", insertable=false, updatable=false)
 	private Usuario to = null;
 	
+	private boolean activo = false;
+	
 	private static final long serialVersionUID = -466339413645963704L;
 
 	public Mensaje() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Mensaje(String cuerpo, Date fecha, Usuario from, Usuario to) {
+	public Mensaje(String cuerpo, Date fecha, Usuario from, Usuario to, boolean activo) {
 		super();
 		this.cuerpo = cuerpo;
 		this.fecha = fecha;
 		this.from = from;
 		this.to = to;
+		this.activo = activo;
 	}
 
 	private long getId() {
@@ -84,6 +87,14 @@ public class Mensaje implements Serializable {
 
 	public void setTo(Usuario to) {
 		this.to = to;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 	
 	

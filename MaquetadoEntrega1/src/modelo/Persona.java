@@ -32,6 +32,7 @@ public class Persona implements Serializable {
 	private String email;
 	private long foto;
 	private String dni;
+
 	/**
 	 * 
 	 */
@@ -48,6 +49,7 @@ public class Persona implements Serializable {
 		this.email = email;
 		this.foto = foto;
 		this.dni = dni;
+		
 	}
 	public long getId() {
 		return id;

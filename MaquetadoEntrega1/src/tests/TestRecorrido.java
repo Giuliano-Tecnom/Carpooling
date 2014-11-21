@@ -2,42 +2,45 @@ package tests;
 
 import java.util.List;
 
-import modelo.Usuario;
-import daosImp.UsuarioDAOHibernateJPA;
+import modelo.Recorrido;
+import daosImp.RecorridoDAOHibernateJPA;
 
-public class TestUsuario {
 
-	public TestUsuario() {
+
+public class TestRecorrido {
+
+	public TestRecorrido() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public static void main(String[] args) {
 
-		UsuarioDAOHibernateJPA g = new UsuarioDAOHibernateJPA();
+		RecorridoDAOHibernateJPA g = new RecorridoDAOHibernateJPA();
 
-		Usuario e = new Usuario();
+		Recorrido e = new Recorrido();
 		g.save(e);
 
-		List<Usuario> l = g.list();
+		List<Recorrido> l = g.list();
 		System.out.println("Se encontraron: " + l.size());
-		Usuario e2 = l.get(0);
+		Recorrido e2 = l.get(0);
 
 		e2.setActivo(true);
 		g.update(e2);
 		System.out.println("Se modifico correctamente el atributo activo");
-		Usuario e3;
-		e3 = (Usuario) g.find(e2.getId());
-
+		
+		Recorrido e3;
+		e3 = (Recorrido) g.find(e2.getId());
+		
 	
 
 		g.delete(e3);
 
-		e3 = (Usuario) g.find(e2.getId());
+		e3 = (Recorrido) g.find(e2.getId());
 
 		if (e3 == null)
 			System.out.println("Se elimino correctamente");
 
 	}
 	
-}
 
+}

@@ -49,11 +49,11 @@ public class Mensaje implements Serializable {
 		this.activo = activo;
 	}
 
-	private long getId() {
+	public long getId() {
 		return id;
 	}
 
-	private void setId(long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

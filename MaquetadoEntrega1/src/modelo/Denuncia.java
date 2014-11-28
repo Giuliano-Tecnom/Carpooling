@@ -40,7 +40,7 @@ public class Denuncia implements Serializable {
 		this.dirigida = dirigida;
 	}
 
-	private long getId() {
+	public long getId() {
 		return id;
 	}	
 	

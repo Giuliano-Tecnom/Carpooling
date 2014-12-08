@@ -12,7 +12,7 @@
 	<div class="row" style="margin-top: 4%; margin-left: 6%; margin-right: 60%">
 	<h1 class="titulo"> Info PooL </h1>	
 	
-    <form role="form" action="indexAdmin.jsp" method="post">        
+    <form role="form" action="login" method="post">        
 	        <div class="form-group">
 	          
 	           <strong><label for="usario">Username</label></strong>

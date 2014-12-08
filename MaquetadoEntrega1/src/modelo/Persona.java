@@ -8,7 +8,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 
 /**
@@ -16,6 +17,7 @@ import javax.persistence.Id;
  *
  */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Persona implements Serializable {
 	/**
 	 * 

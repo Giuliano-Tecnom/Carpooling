@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity
 public class Denuncia implements Serializable {
 
@@ -24,6 +26,7 @@ public class Denuncia implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO")
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Usuario dirigida;
 	
 	private static final long serialVersionUID = 3389132037727561760L;

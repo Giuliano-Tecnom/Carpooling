@@ -18,6 +18,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
+
 import modelo.Usuario.Tipo;
 
 @Entity
@@ -60,6 +62,7 @@ public class Recorrido implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_EVENTO_ACADEMICO")
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private EventoAcademico evento = null;
 	
 	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE})

@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
+
 import modelo.Usuario.Tipo;
 
 @Entity
@@ -39,6 +41,7 @@ public class Puntaje implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO")
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Usuario usuario = null; //esta atributo representa el usuario a puntuar
 	
 	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE})

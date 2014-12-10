@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity
 public class Mensaje implements Serializable {
 
@@ -26,10 +28,12 @@ public class Mensaje implements Serializable {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "ID_USUARIO", insertable=false, updatable=false)
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Usuario from = null;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "ID_USUARIO", insertable=false, updatable=false)
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Usuario to = null;
 	
 	private boolean activo = false;

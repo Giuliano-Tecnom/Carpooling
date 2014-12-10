@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Cascade;
 @Entity
 public class UsuarioRecorrido implements Serializable {
 
@@ -19,14 +21,17 @@ public class UsuarioRecorrido implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_RECORRIDO")
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Recorrido recorrido = null;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO")
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Usuario usuario = null;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_PUNTAJE")
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Puntaje puntaje = null;
 	private boolean activo = false;
 	

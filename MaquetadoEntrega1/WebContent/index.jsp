@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Auto log</title>
 </head>
 <body>
 	<jsp:include page="heder.jsp"></jsp:include>
@@ -21,7 +21,7 @@
 	        </div>
 	        <div class="form-group">
 	            <strong><label for="pass">Pasword</label></strong>
-	            <input class="form-control" type="text" name="pass">
+	            <input class="form-control" type="password" name="pass">
 	            <p class="help-block">Inserte aqu&iacute; su contrase&ntilde;a.</p>
 	        </div>
 	     

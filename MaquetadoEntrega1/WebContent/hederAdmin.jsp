@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-
+    pageEncoding="ISO-8859-1"  import="modelo.Usuario"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@include file="heder.jsp" %>
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
@@ -15,12 +15,17 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
-					<a href="#" class="dropdown-toggle"	data-toggle="dropdown">Hola Admin 
+					<a href="#" class="dropdown-toggle"	data-toggle="dropdown">
+						<span>Hola 
+							<%= 
+								((Usuario)session.getAttribute("usuarioAdministrador")).getNombre()
+							%>
+						</span> 
 						<span class="glyphicon glyphicon-chevron-down"></span>
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Mi Configuración</a></li>
-							<li><a href="Inicio?p=logout">Cerrar Sesión</a></li>
+							<li><a href="#">Cerrar Sesión</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -41,7 +46,7 @@
                           <a href="listadoUsuarios.jsp"> Usuarios </a>  
                       </li>  
                       <li>  
-                          <a href="listadoViajes.jsp"> Eventos / Congresos  </a>  
+                          <a href="listadoEventosAcademicos"> Eventos / Congresos  </a>  
                       </li>                          
                       <li>  
                           <a href="listadoQuejas.jsp"> Seccion de Quejas </a>  

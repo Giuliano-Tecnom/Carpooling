@@ -5,6 +5,7 @@ package modelo;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -32,7 +33,10 @@ public class Persona implements Serializable {
 	private String telefono;
 	private String direccion;
 	private String email;
-	private long foto;
+	
+	@Column(nullable = true)
+	private String foto;
+	
 	private String dni;
 
 	/**
@@ -41,8 +45,21 @@ public class Persona implements Serializable {
 	public Persona() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	public Persona(String nombre, String apellido, String telefono,
-			String direccion, String email, long foto, String dni) {
+			String direccion, String email, String dni) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.telefono = telefono;
+		this.direccion = direccion;
+		this.email = email;		
+		this.dni = dni;
+		
+	}
+	
+	public Persona(String nombre, String apellido, String telefono,
+			String direccion, String email, String foto, String dni) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -89,10 +106,10 @@ public class Persona implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public long getFoto() {
+	public String getFoto() {
 		return foto;
 	}
-	public void setFoto(long foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 	public String getDni() {

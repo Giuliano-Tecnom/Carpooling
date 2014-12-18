@@ -9,7 +9,26 @@
 
 <action name="login" class="actions.LoginAction">
 	<result name="success"> indexAdmin.jsp </result>
+	<result name="viajero"> indexViajero.jsp </result>
 	<result name="input"> index.jsp </result>
+</action>
+
+<action name="registrarViajero" class="actions.RegistrarViajeroAction">
+	<result name="success"> indexViajero.jsp </result>
+	<result name="input"> registroViajero.jsp </result>
+</action>
+
+<action name="altaEventoAcademico" method="create" class="actions.CRUDEventoAcademicoAction">
+	<result name="success" type="redirect"> listadoEventosAcademicos </result>
+	<result name="input"> altaEventoAcademico.jsp </result>
+</action>
+
+<action name="listadoEventosAcademicos" method="list" class="actions.CRUDEventoAcademicoAction">
+	<result name="success"> listadoEventosAcademicos.jsp </result>	
+</action>
+
+<action name="detailEventoAcademico" method="detail" class="actions.CRUDEventoAcademicoAction">
+	<result name="success" > detalleEventoAcademico.jsp</result>	
 </action>
 
 

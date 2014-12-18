@@ -59,12 +59,36 @@ public class Usuario extends Persona implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	public Usuario(String nombre, String apellido, String telefono,
-			String direccion, String email, long foto, String dni, Tipo tipo, String usuario, String pass, boolean activo,
+			String direccion, String email, String dni, Tipo tipo, String usuario, String pass, boolean activo,
 			List<Recorrido> recorridosRealizados,
 			List<Puntaje> puntajesRecibidos,
 			List<Denuncia> denunciasRealizadas,
-			List<Denuncia> denunciasRecibidas, List<Mensaje> mensajesRecibidos,
+			List<Denuncia> denunciasRecibidas, 
+			List<Mensaje> mensajesRecibidos,
+			List<Mensaje> mensajesEnviados) {
+		super(nombre, apellido, telefono, direccion, email, dni);
+		// TODO Auto-generated constructor stub
+		this.tipo = tipo;
+		this.usuario = usuario;
+		this.pass = pass;
+		this.activo = activo;
+		this.recorridosRealizados = recorridosRealizados;
+		this.puntajesRecibidos = puntajesRecibidos;
+		this.denunciasRealizadas = denunciasRealizadas;
+		this.denunciasRecibidas = denunciasRecibidas;
+		this.mensajesRecibidos = mensajesRecibidos;
+		this.mensajesEnviados = mensajesEnviados;
+	}
+	
+	public Usuario(String nombre, String apellido, String telefono,
+			String direccion, String email, String foto, String dni, Tipo tipo, String usuario, String pass, boolean activo,
+			List<Recorrido> recorridosRealizados,
+			List<Puntaje> puntajesRecibidos,
+			List<Denuncia> denunciasRealizadas,
+			List<Denuncia> denunciasRecibidas, 
+			List<Mensaje> mensajesRecibidos,
 			List<Mensaje> mensajesEnviados) {
 		super(nombre, apellido, telefono, direccion, email, foto, dni);
 		// TODO Auto-generated constructor stub

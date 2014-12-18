@@ -3,6 +3,7 @@ package modelo;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -19,20 +20,21 @@ public class UsuarioRecorrido implements Serializable {
 	@GeneratedValue
 	private long id;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "ID_RECORRIDO")
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Recorrido recorrido = null;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "ID_USUARIO")
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Usuario usuario = null;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "ID_PUNTAJE")
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Puntaje puntaje = null;
+	
 	private boolean activo = false;
 	
 	private static final long serialVersionUID = -5519484046464892609L;

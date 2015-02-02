@@ -1,26 +1,38 @@
 package modelo;
 
 import java.io.Serializable;
-import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
+
+
+
+
+
+
+
+
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Cascade;
 
-import modelo.Usuario.Tipo;
+
+
+
 
 @Entity
 public class Recorrido implements Serializable {
@@ -44,30 +56,46 @@ public class Recorrido implements Serializable {
 	@Enumerated(EnumType.ORDINAL) 	
 	private Tipo tipo = null;
 	
-	@ElementCollection
-	@CollectionTable(name="DIA", joinColumns=@JoinColumn(name="ID_RECORRIDO"))
-	@Column(name="DIA")
-	private List<String> dias = null;
-	
-	private Time horaPartida = null;
-	private Time horaLlegada = null;
-	private String direccionDesde = null;
-	private String direccionHasta = null;
-	private String urlGoogleMaps = null;
-	private Date fecha = null;
-	
 	@Column(name="TIPO_REGISTRO") 
 	@Enumerated(EnumType.ORDINAL) 	
 	private Registro tipoDeRegistro = null;
+	
+	
+	
+	private Date horaPartida = null;
+	private Date horaLlegada = null;
+	private String direccionDesde = null;
+	private String direccionHasta = null;
+	private String urlGoogleMaps = null;
+	private Date fechaSalida = null;
+	private Date fechaVuelta = null;
+	private int asientosDisponibles;
+	
+//	@OneToMany(cascade={CascadeType.ALL})
+//	@JoinColumn(name="ID_RECORRIDO_SOLICITO_UNIRSE_AL_RECORRIDO")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "SOLICITUDES_USUARIOS_RECORRIDO",joinColumns = { 
+			@JoinColumn(name = "RECORRIDO_ID", nullable = false, updatable = false) }, 
+			inverseJoinColumns = { @JoinColumn(name = "USUARIO_ID", 
+					nullable = false, updatable = false) })
+	private List<Usuario> solicitaronUnirseAlRecorrido = new ArrayList<Usuario>();
+	
+//	@OneToMany(cascade={CascadeType.ALL})
+//	@JoinColumn(name="ID_RECORRIDO_INTEGRANTE_DEL_RECORRIDO")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "USUARIOS_INTEGRANTES_RECORRIDO",joinColumns = { 
+			@JoinColumn(name = "RECORRIDO_ID", nullable = false, updatable = false) }, 
+			inverseJoinColumns = { @JoinColumn(name = "USUARIO_ID", 
+					nullable = false, updatable = false) })
+	private List<Usuario> integrantesDelRecorrido = new ArrayList<Usuario>();
+	
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_EVENTO_ACADEMICO")
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private EventoAcademico evento = null;
 	
-	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinColumn(name="ID_USUARIO")	
-	private List<Usuario> participantesDelRecorrido = null;
 	
 	private boolean activo = false;
 	
@@ -76,25 +104,28 @@ public class Recorrido implements Serializable {
 	public Recorrido() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public Recorrido(Tipo tipo, List<String> dias, Time horaPartida,
-			Time horaLlegada, String direccionDesde, String direccionHasta,
-			String urlGoogleMaps, Date fecha, Registro tipoDeRegistro,
-			EventoAcademico evento, List<Usuario> participantesDelRecorrido, boolean activo) {
+	
+	public Recorrido(Tipo tipo, Date horaPartida, Date horaLlegada,
+			String direccionDesde, String direccionHasta, String urlGoogleMaps,
+			Date fechaSalida, Date fechaVuelta, Registro tipoDeRegistro,
+			EventoAcademico evento,boolean activo,int asientos) {
 		super();
 		this.tipo = tipo;
-		this.dias = dias;
 		this.horaPartida = horaPartida;
 		this.horaLlegada = horaLlegada;
 		this.direccionDesde = direccionDesde;
 		this.direccionHasta = direccionHasta;
 		this.urlGoogleMaps = urlGoogleMaps;
-		this.fecha = fecha;
+		this.fechaSalida = fechaSalida;
+		this.fechaVuelta = fechaVuelta;
 		this.tipoDeRegistro = tipoDeRegistro;
 		this.evento = evento;
-		this.participantesDelRecorrido = participantesDelRecorrido;
 		this.activo = activo;
+		this.asientosDisponibles = asientos;
 	}
+
+
+
 
 	public long getId() {
 		return id;
@@ -103,6 +134,54 @@ public class Recorrido implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	
+	
+	public List<Usuario> getSolicitaronUnirseAlRecorrido() {
+		return solicitaronUnirseAlRecorrido;
+	}
+
+	public void setSolicitaronUnirseAlRecorrido(
+			List<Usuario> solicitaronUnirseAlRecorrido) {
+		this.solicitaronUnirseAlRecorrido = solicitaronUnirseAlRecorrido;
+	}
+
+	public List<Usuario> getIntegrantesDelRecorrido() {
+		return integrantesDelRecorrido;
+	}
+
+	public void setIntegrantesDelRecorrido(
+			List<Usuario> integrantesDelRecorrido) {
+		this.integrantesDelRecorrido = integrantesDelRecorrido;
+	}
+
+	public int getAsientosDisponibles() {
+		return asientosDisponibles;
+	}
+
+	public void setAsientosDisponibles(int asientosDisponibles) {
+		this.asientosDisponibles = asientosDisponibles;
+	}
+
+	public Date getFechaSalida() {
+		return fechaSalida;
+	}
+
+
+	public void setFechaSalida(Date fechaSalida) {
+		this.fechaSalida = fechaSalida;
+	}
+
+
+	public Date getFechaVuelta() {
+		return fechaVuelta;
+	}
+
+
+	public void setFechaVuelta(Date fechaVuelta) {
+		this.fechaVuelta = fechaVuelta;
+	}
+
 
 	public Tipo getTipo() {
 		return tipo;
@@ -111,28 +190,20 @@ public class Recorrido implements Serializable {
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
-
-	public List<String> getDias() {
-		return dias;
-	}
-
-	public void setDias(List<String> dias) {
-		this.dias = dias;
-	}
-
-	public Time getHoraPartida() {
+	
+	public Date getHoraPartida() {
 		return horaPartida;
 	}
 
-	public void setHoraPartida(Time horaPartida) {
+	public void setHoraPartida(Date horaPartida) {
 		this.horaPartida = horaPartida;
 	}
 
-	public Time getHoraLlegada() {
+	public Date getHoraLlegada() {
 		return horaLlegada;
 	}
 
-	public void setHoraLlegada(Time horaLlegada) {
+	public void setHoraLlegada(Date horaLlegada) {
 		this.horaLlegada = horaLlegada;
 	}
 
@@ -160,13 +231,7 @@ public class Recorrido implements Serializable {
 		this.urlGoogleMaps = urlGoogleMaps;
 	}
 
-	public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
+	
 
 	public Registro getTipoDeRegistro() {
 		return tipoDeRegistro;
@@ -184,14 +249,7 @@ public class Recorrido implements Serializable {
 		this.evento = evento;
 	}
 
-	public List<Usuario> getParticipantesDelRecorrido() {
-		return participantesDelRecorrido;
-	}
-
-	public void setParticipantesDelRecorrido(List<Usuario> participantesDelRecorrido) {
-		this.participantesDelRecorrido = participantesDelRecorrido;
-	}
-
+	
 	public boolean isActivo() {
 		return activo;
 	}
@@ -200,6 +258,33 @@ public class Recorrido implements Serializable {
 		this.activo = activo;
 	}
 	
+	public void agregarUsuario(Usuario usu){
+		this.getSolicitaronUnirseAlRecorrido().add(usu);
+		//boolean tiene = this.getIntegrantesDelRecorrido().contains(usu);
+	}
 	
-
+	public void eliminarUsuario(Usuario usu){
+		this.getSolicitaronUnirseAlRecorrido().remove(usu);
+	}
+	
+	public void incluirUsuarioAlRecorrido(Usuario usu){
+		this.getIntegrantesDelRecorrido().add(usu);
+		this.asientosDisponibles--;
+		this.eliminarUsuario(usu);
+	}
+	
+	public void eliminarUsuarioDelRecorrido(Usuario usu){
+		this.getIntegrantesDelRecorrido().remove(usu);
+		this.asientosDisponibles++;
+	}
+	
+	public String returnDateWithNotTime(Date fecha){
+		String[] parts = fecha.toString().split(" ");
+		return parts[0]; 
+	}
+	
+	public String returnTimeOfDate(Date fecha){
+		String[] parts = fecha.toString().split(" ");
+		return parts[1]; 
+	}
 }

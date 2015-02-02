@@ -4,33 +4,142 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+<!-- 
+<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" /> -->
 <package name="actions" namespace="/" extends="struts-default">	
 
 
-<action name="login" class="actions.LoginAction">
-	<result name="success"> indexAdmin.jsp </result>
-	<result name="viajero"> indexViajero.jsp </result>
+<action name="detalleUsuario" method="detailUsuario" class="CRUDUsuarioAction">
+	<result name="success"> detalleUsuario.jsp</result>
+	<result name="input" type="redirect"> login</result>
+</action>
+
+<action name="cerrarSesion" method="cerrarSesion" class="CRUDUsuarioAction">
+	<result name="success"> index.jsp</result>
+</action>
+
+<action name="login" method="logIn" class="CRUDUsuarioAction">
+	<result name="success"> hederAdmin.jsp </result>
+	<result name="viajero"> hederViajero.jsp </result>
 	<result name="input"> index.jsp </result>
 </action>
 
-<action name="registrarViajero" class="actions.RegistrarViajeroAction">
-	<result name="success"> indexViajero.jsp </result>
-	<result name="input"> registroViajero.jsp </result>
+<action name="registrarViajero" method="registrarViajero" class="CRUDUsuarioAction">
+	<result name="success"> hederViajero.jsp </result>
+	<result name="input" type="redirect"> login</result>
 </action>
 
-<action name="altaEventoAcademico" method="create" class="actions.CRUDEventoAcademicoAction">
+
+<action name="borrarEventoAcademico" method="delete" class="CRUDEventoAcademicoAction">
 	<result name="success" type="redirect"> listadoEventosAcademicos </result>
-	<result name="input"> altaEventoAcademico.jsp </result>
+	<result name="input" type="redirect"> login </result>
 </action>
 
-<action name="listadoEventosAcademicos" method="list" class="actions.CRUDEventoAcademicoAction">
-	<result name="success"> listadoEventosAcademicos.jsp </result>	
+<action name="altaEventoAcademico" method="create" class="CRUDEventoAcademicoAction">
+	<result name="success" type="redirect"> listadoEventosAcademicos </result>
+	<result name="input" type="redirect"> login </result>
 </action>
 
-<action name="detailEventoAcademico" method="detail" class="actions.CRUDEventoAcademicoAction">
-	<result name="success" > detalleEventoAcademico.jsp</result>	
+<action name="listadoEventosAcademicos" method="list" class="CRUDEventoAcademicoAction">
+	<result name="success"> listadoEventosAcademicos.jsp </result>
+	<result name="input" type="redirect"> login </result>	
 </action>
 
+<!-- El metodo este se encarga de redireccionar al archivo jsp que se encarga de la edicion -->
+<action name="editarEventoAcademico" method="edit" class="CRUDEventoAcademicoAction">
+	<result name="success"> editarEventoAcademico.jsp </result>
+	<result name="input" type="redirect"> login </result>	
+</action>
+
+<!-- El metodo este se encarga de guardar la edicion y volver al listado -->
+<action name="updateEventoAcademico" method="update" class="CRUDEventoAcademicoAction">
+	<result name="success" type="redirect"> listadoEventosAcademicos </result>
+	<result name="input" type="redirect"> login </result>	
+</action>
+
+<action name="nuevoRecorrido" method="list" class="CRUDEventoAcademicoAction">
+	<result name="success"> altaRecorrido.jsp</result>
+	<result name="input" type="redirect"> login </result>
+</action>
+
+<action name="detailEventoAcademico" method="detail" class="CRUDEventoAcademicoAction">
+	<result name="success" > detalleEventoAcademico.jsp</result>
+	<result name="input" type="redirect"> login </result>	
+</action>
+
+<!-- El metodo este se encarga de redireccionar al archivo jsp que se encarga de la edicion -->
+<action name="editarRecorrido" method="edit" class="CRUDRecorridoAction">
+	<result name="success"> editarRecorrido.jsp</result>
+	<result name="input" type="redirect"> login </result>
+</action>
+
+<!-- El metodo este se encarga de guardar la edicion y volver al listado -->
+<action name="updateRecorrido" method="update" class="CRUDRecorridoAction">
+	<result name="success" type="redirect"> listadoMisRecorridos </result>
+	<result name="input" type="redirect"> login </result>
+</action>
+
+
+
+<action name="eliminarRecorrido" method="delete" class="CRUDRecorridoAction">
+	<result name="success" type="redirect"> listadoMisRecorridos</result>
+	<result name="input" type="redirect"> login </result>
+</action>
+
+<action name="altaRecorrido" method="create" class="CRUDRecorridoAction">
+	<result name="success" type="redirect"> listadoMisRecorridos</result>
+	<result name="input" type="redirect"> login </result>
+</action>
+
+<action name="listadoMisRecorridos" method="listMisRecorridos" class="CRUDRecorridoAction">
+	<result name="success"> listadoMisRecorridos.jsp</result>
+	<result name="input" type="redirect"> login </result>
+</action>
+
+<action name="detailRecorrido" method="detailRecorrido" class="CRUDRecorridoAction">
+	<result name="success">detalleRecorrido.jsp</result>
+	<result name="input" type="redirect"> login </result>
+</action>
+
+<action name="listadoEventosCongresos" method="listEventosCongresosTodos" class="CRUDRecorridoAction">
+	<result name="success"> listadoEventosCongresos.jsp</result>
+	<result name="input" type="redirect"> login </result>
+</action>
+
+<action name="participarDelRecorrido" method="solicitarParticiparDelRecorrido" class="CRUDRecorridoAction">
+	<result name="success" type="redirect"> listadoEventosCongresos</result>
+	<result name="input" type="redirect"> login </result>
+</action>
+
+<action name="darseDeBajaDelRecorrido" method="darseDeBajaDelRecorrido" class="CRUDRecorridoAction">
+	<result name="success" type="redirect"> listadoEventosCongresos</result>
+	<result name="input" type="redirect"> login </result>
+</action>
+
+<action name="cancelarSuscripcionRecorrido" method="cancelarSuscripcionRecorrido" class="CRUDRecorridoAction">
+	<result name="success" type="redirect"> listadoEventosCongresos</result>
+	<result name="input" type="redirect"> login </result>
+</action>
+
+<action name="listadoDeSolicitudesDeParticipacionAlRecorrido" method="listadoDeSolicitudesDeParticipacionAlRecorrido" class="CRUDRecorridoAction">
+	<result name="success"> listadoUsuariosQueSolicitarionUnirseARecorridos.jsp</result>
+	<result name="input" type="redirect"> login </result>
+</action>
+
+<action name="incluirUsuarioAlRecorrido" method="incluirUsuarioAlRecorrido" class="CRUDRecorridoAction">
+	<result name="success"  type="redirect"> listadoMisRecorridos</result>
+	<result name="input" type="redirect"> login </result>
+</action>
+
+<action name="rechazarUsuarioDelRecorrido" method="rechazarUsuarioDelRecorrido" class="CRUDRecorridoAction">
+	<result name="success"  type="redirect"> listadoMisRecorridos</result>
+	<result name="input" type="redirect"> login </result>
+</action>
+
+<action name="eliminarUsuarioRecorrido" method="eliminarUsuarioRecorrido" class="CRUDRecorridoAction">
+	<result name="success"  type="redirect"> listadoMisRecorridos</result>
+	<result name="input" type="redirect"> login </result>
+</action>
 
 </package>
 </struts>

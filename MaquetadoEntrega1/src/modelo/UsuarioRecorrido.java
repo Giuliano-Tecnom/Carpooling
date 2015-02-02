@@ -21,17 +21,17 @@ public class UsuarioRecorrido implements Serializable {
 	private long id;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "ID_RECORRIDO")
+	@JoinColumn(name = "ID_RECORRIDO_REALIZADO")
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Recorrido recorrido = null;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "ID_USUARIO")
+	@JoinColumn(name = "ID_USUARIO_REALIZO_RECORRIDO")
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Usuario usuario = null;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "ID_PUNTAJE")
+	@JoinColumn(name = "ID_PUNTAJE_RECIBIDO")
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Puntaje puntaje = null;
 	

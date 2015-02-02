@@ -2,13 +2,20 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cascade;
 
 
 @Entity
@@ -39,6 +46,11 @@ public class EventoAcademico implements Serializable {
 	@Enumerated(EnumType.ORDINAL) 	
 	private Tipo tipo = null;
 	
+	@OneToMany()
+	@JoinColumn(name="ID_EVENTO")
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	private List<Recorrido> recorridos = null;
+	
 	private static final long serialVersionUID = 2237197716747634048L;
 
 	public EventoAcademico() {
@@ -63,7 +75,14 @@ public class EventoAcademico implements Serializable {
 	}
 
 
-
+	public List<Recorrido> getRecorridos() {
+		return recorridos;
+	}
+	
+	public void setRecorridos(List<Recorrido> recorridos) {
+		this.recorridos = recorridos;
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -146,6 +165,27 @@ public class EventoAcademico implements Serializable {
 		this.activo = activo;
 	}
 	
+	public String returnDateWithNotTime(Date fecha){
+		String[] parts = fecha.toString().split(" ");
+		return parts[0]; 
+	}
 	
+	public void marcarRecorridosComoInactivos(){
+		//debería recorrer la coleccion de recorridos y marcarlos todos como inactivos
+		try{			
+			if(!this.getRecorridos().isEmpty()){
+				Iterator<Recorrido> iterator = this.getRecorridos().iterator();
+				while(iterator.hasNext()){
+					iterator.next().setActivo(false);
+				}	
+            }
+		}catch(Exception name){
+			System.err.println("Error: " +name);
+		}	
+	}
+	
+	public void agregarRecorrido(Recorrido recorrido){
+		this.getRecorridos().add(recorrido);
+	}
 
 }

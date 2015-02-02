@@ -40,13 +40,14 @@ public class Puntaje implements Serializable {
 	private TipoPuntaje tipoPuntaje = null;
 	
 	@ManyToOne
-	@JoinColumn(name = "ID_USUARIO")
+	@JoinColumn(name = "ID_USUARIO_A_PUNTUAR")
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
-	private Usuario usuario = null; //esta atributo representa el usuario a puntuar
+	private Usuario usuarioAPuntuar = null; //esta atributo representa el usuario a puntuar
 	
-	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinColumn(name="ID_USUARIO")	
-	private List<UsuarioRecorrido> usuariosQuePuntuaron = null;
+	@ManyToOne
+	@JoinColumn(name = "ID_USUARIO_QUE_PUNTUO")
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	private Usuario usuarioQuePuntuo = null;
 	
 	private boolean activo = false;
 	
@@ -56,11 +57,13 @@ public class Puntaje implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Puntaje(TipoPuntaje tipoPuntaje, Usuario usuario, List<UsuarioRecorrido> viaje,boolean activo) {
+	public Puntaje(long id, TipoPuntaje tipoPuntaje, Usuario usuarioAPuntuar,
+			Usuario usuarioQuePuntuo, boolean activo) {
 		super();
+		this.id = id;
 		this.tipoPuntaje = tipoPuntaje;
-		this.usuario = usuario;
-		this.usuariosQuePuntuaron = viaje;
+		this.usuarioAPuntuar = usuarioAPuntuar;
+		this.usuarioQuePuntuo = usuarioQuePuntuo;
 		this.activo = activo;
 	}
 
@@ -71,7 +74,6 @@ public class Puntaje implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
-	
 
 	public TipoPuntaje getTipoPuntaje() {
 		return tipoPuntaje;
@@ -81,20 +83,20 @@ public class Puntaje implements Serializable {
 		this.tipoPuntaje = tipoPuntaje;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Usuario getUsuarioAPuntuar() {
+		return usuarioAPuntuar;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setUsuarioAPuntuar(Usuario usuarioAPuntuar) {
+		this.usuarioAPuntuar = usuarioAPuntuar;
 	}
 
-	public List<UsuarioRecorrido> getUsuariosQuePuntuaron() {
-		return usuariosQuePuntuaron;
+	public Usuario getUsuarioQuePuntuo() {
+		return usuarioQuePuntuo;
 	}
 
-	public void setUsuariosQuePuntuaron(List<UsuarioRecorrido> usuariosQuePuntuaron) {
-		this.usuariosQuePuntuaron = usuariosQuePuntuaron;
+	public void setUsuarioQuePuntuo(Usuario usuarioQuePuntuo) {
+		this.usuarioQuePuntuo = usuarioQuePuntuo;
 	}
 
 	public boolean isActivo() {
@@ -104,8 +106,6 @@ public class Puntaje implements Serializable {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	
-	
 
 	
 }

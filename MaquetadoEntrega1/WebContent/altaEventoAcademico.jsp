@@ -1,16 +1,16 @@
 <%@include file="/hederAdmin.jsp"%>
 
+<script type="text/javascript" src="js/googleMaps.js">
+</script>
+
 <ol class="breadcrumb col-sm-8">
-	<li>Viajes</li>
-	<li>Listado</li>
+	<li><a href="listadoEventosAcademicos">Listado</a></li>
 	<li class="active">Nuevo</li>
 </ol>
 <div class="col-sm-8">
 	<div class="panel panel-default">
 		<div class="panel-heading clearfix">
-			<span style="font-size: 24px;">Alta de evento</span> <a
-				class="btn btn-info" style="float: right;"
-				href="listadoEventosAcademicos">Volver</a>
+			<span style="font-size: 24px;">Alta de evento</span> 
 		</div>
 		<div class="panel-body">
 			<form role="form" action="altaEventoAcademico" method="post"
@@ -30,7 +30,7 @@
 				<div class="form-group">
 					<label for="dir">Direcci&oacute;n</label> <input type="text"
 						class="form-control" id="dir" name="direccion"
-						placeholder="Direcci&oacute;n del evento" required>
+						placeholder="Direcci&oacute;n del evento" onblur="eligioDireccion()" required>
 				</div>
 				<div class="form-group">
 					<label for="fechaini">Fecha de inicio</label> <input type="date"
@@ -56,7 +56,12 @@
 						<option value="ACADEMICO">Evento academico</option>
 					</select>
 				</div>
-
+				
+				<div class="form-group" id="mapa">
+					<label>Ubicaci&oacute;n en mapa:</label><br/>
+					<div id="map_canvas" style="width: 100%; height: 500px">
+					</div>
+				</div>
 
 				<button type="submit" class="btn btn-success btn-block">Guardar</button>
 			</form>

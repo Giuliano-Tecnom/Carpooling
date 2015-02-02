@@ -2,8 +2,6 @@ package daosImp;
 
 import javax.persistence.Query;
 
-import org.springframework.stereotype.Component;
-
 import modelo.Usuario;
 import daos.UsuarioDAO;
 

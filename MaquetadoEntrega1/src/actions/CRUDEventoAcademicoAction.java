@@ -1,10 +1,12 @@
 package actions;
 
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +14,7 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import modelo.EventoAcademico;
+import modelo.Usuario;
 import modelo.EventoAcademico.Tipo;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -24,6 +27,7 @@ public class CRUDEventoAcademicoAction extends ActionSupport{
 	@Autowired
 	private EventoAcademicoDAO eventoAcademicoDAO;
 	
+	private String id;
 	private String nombre;
 	private String telefono;
 	private String direccion;
@@ -38,15 +42,18 @@ public class CRUDEventoAcademicoAction extends ActionSupport{
 	private EventoAcademico evento;
 	private ArrayList<EventoAcademico> eventos;
 	
-	public String create() throws ParseException{
-		System.out.println("entroooo");
-		System.out.println(this.getNombre() + " - " +this.getTelefono()+ " - " +this.getDireccion()+ " - " + this.getTipo() +" - " + this.getFechaInicio() + " - "+ this.getFechaFin() + " - " + this.getHoraDesdeHasta() );
+	
+	
+	public CRUDEventoAcademicoAction(){
 		
-		if(this.getNombre() == null || this.getTelefono() == null || this.getDireccion() == null || this.getTipo() == null || this.getFechaFin() == null || this.getFechaInicio() == null || this.getHoraDesdeHasta() == null){
-			System.out.println("Campo vacio");
+	}
+	
+	public String create() throws ParseException{
+		HttpServletRequest request = (HttpServletRequest)ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+		if((this.getNombre() == null || this.getTelefono() == null || this.getDireccion() == null || this.getTipo() == null || this.getFechaFin() == null || this.getFechaInicio() == null || this.getHoraDesdeHasta() == null) && request.getSession().getAttribute("usuarioAdministrador") == null){
 			return INPUT;
 		}else{
-			//EventoAcademicoDAOHibernateJPA g = new EventoAcademicoDAOHibernateJPA();
+			System.out.println(this.getDireccion());
 			
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			Date fechIni = formatter.parse(this.getFechaInicio());
@@ -63,28 +70,128 @@ public class CRUDEventoAcademicoAction extends ActionSupport{
 	
 	
 	public String list(){
-		System.out.println("Entroooooooo");
-		//EventoAcademicoDAOHibernateJPA g = new EventoAcademicoDAOHibernateJPA();
-		this.setEventos((ArrayList<EventoAcademico>)eventoAcademicoDAO.list());
-		return SUCCESS;
+		HttpServletRequest request = (HttpServletRequest)ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+		if(request.getSession().getAttribute("usuarioAdministrador") != null || request.getSession().getAttribute("usuarioViajero") != null){
+			this.setEventos((ArrayList<EventoAcademico>)eventoAcademicoDAO.listActive());
+			return SUCCESS;
+		}else{
+			return INPUT;
+		}
+		
 	}
 	
 	public String detail(){
-		System.out.println("Entro al detalle");
+		
 		HttpServletRequest request = (HttpServletRequest)ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST );
-		Long id = Long.parseLong(request.getParameter("id"));
+		if((request.getSession().getAttribute("usuarioAdministrador") != null || request.getSession().getAttribute("usuarioViajero") != null) && request.getParameter("id") != null){
+			
+			Long id = Long.parseLong(request.getParameter("id"));
+			
+			EventoAcademico e = (EventoAcademico) eventoAcademicoDAO.find(id);
+			this.setEvento(e);
+			
+			return SUCCESS;
+		}else{
+			return INPUT;
+		}
+	}
+	
+	public String edit(){
+		HttpServletRequest request = (HttpServletRequest)ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST );
+		if((request.getSession().getAttribute("usuarioAdministrador") != null || request.getSession().getAttribute("usuarioViajero") != null) && request.getParameter("id") != null){
+			
+			Long id = Long.parseLong(request.getParameter("id"));
+			
+			EventoAcademico e = (EventoAcademico) eventoAcademicoDAO.find(id);
+			
+			this.setId(id.toString());
+			
+			e.setFechaDeCreacion(new Date());
+			this.setEvento(e);
+			
+			this.setFechaInicio(e.returnDateWithNotTime(e.getFechaInicio()));
+			this.setFechaFin(e.returnDateWithNotTime(e.getFechaFin()));
+			
+						
+			return SUCCESS;
+		}else{
+			return INPUT;
+		}
+	}
+	
+	public String update(){
+		System.out.println(this.getId());
+
+		HttpServletRequest request = (HttpServletRequest)ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST );
+		if(request.getSession().getAttribute("usuarioAdministrador") != null || request.getSession().getAttribute("usuarioViajero") != null){
+			
+			Long id = Long.parseLong(this.getId());
+			
+			EventoAcademico e = (EventoAcademico) eventoAcademicoDAO.find(id);
+			
+			e.setDireccion(this.getDireccion());
+			e.setFechaDeCreacion(new Date());
+			e.setTelefono(this.getTelefono());
+			e.setHoraDesdeHasta(this.getHoraDesdeHasta());
+			e.setNombre(this.getNombre());
+			e.setTipo(Tipo.valueOf(this.getTipo()));
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			Date fechIni = new Date();
+			Date fecFin = new Date();
+			try {
+				fechIni = formatter.parse(this.getFechaInicio());
+				fecFin = formatter.parse(this.getFechaFin());
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.setFechaInicio(fechIni);
+			e.setFechaFin(fecFin);
+			
+			eventoAcademicoDAO.update(e);
+			
+			return SUCCESS;
+		}else{
+			return INPUT;
+		}
 		
-		//EventoAcademicoDAOHibernateJPA g = new EventoAcademicoDAOHibernateJPA();
-		EventoAcademico e = (EventoAcademico) eventoAcademicoDAO.find(id);
-		this.setEvento(e);
 		
-		System.out.println("id del evento: "+ id);
-		return SUCCESS;
 		
 	}
+	
+	public String delete(){
+		HttpServletRequest request = (HttpServletRequest)ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST );
+		if((request.getSession().getAttribute("usuarioAdministrador") != null || request.getSession().getAttribute("usuarioViajero") != null) && request.getParameter("id") != null){
+			
+			Long id = Long.parseLong(request.getParameter("id"));
+			EventoAcademico e = (EventoAcademico) eventoAcademicoDAO.find(id);
+			e.setActivo(false);
+			e.marcarRecorridosComoInactivos();
+			eventoAcademicoDAO.update(e);
+			return SUCCESS;
+		}else{
+			return INPUT;
+		}
+	}
+	
+	//-------------------------------------GETTERS ANS SETTERS------------------------------
+	
+	
+	
+	
 	public EventoAcademicoDAO getEventoAcademicoDAO() {
 		return eventoAcademicoDAO;
 	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setEventoAcademicoDAO(EventoAcademicoDAO eventoAcademicoDAO) {
 		this.eventoAcademicoDAO = eventoAcademicoDAO;
 	}

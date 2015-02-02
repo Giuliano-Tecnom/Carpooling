@@ -27,12 +27,12 @@ public class Mensaje implements Serializable {
 	private Date fecha = null;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "ID_USUARIO_FROM")
+	@JoinColumn(name = "ID_USUARIO_ENVIO")
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Usuario from = null;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "ID_USUARIO_TO")
+	@JoinColumn(name = "ID_USUARIO_RECIBIO")
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Usuario to = null;
 	

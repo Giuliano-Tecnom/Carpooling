@@ -1,9 +1,25 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%@include file="/hederAdmin.jsp" %>	 
+<script>
+$(document).ready( function () {
+    $('#table_id').DataTable();
+    console.log("Entro al js");
+} );
+
+function borrar(){
+	var x;
+	var r = confirm("Está seguro que desa borrar el evento?");
+	if (r == true) {
+	    x = "You pressed OK!";
+	    
+	} else {
+	    x = "You pressed Cancel!";
+	}
+	
+}
+</script>	 
 	 
-	 
-	 <ol class="breadcrumb col-sm-8 ">
-        <li>Viajes</li>
+	<ol class="breadcrumb col-sm-8 ">
         <li class="active">Listado</li>
     </ol>
 	
@@ -15,7 +31,7 @@
   			 
   		</div>		
 		<div class="panel-body"> 	   
-  				<table class="table table-striped">
+  				<table class="table table-striped" id="table_id">
  					<thead>
 			            <tr>
 			                <th>ID</th>
@@ -49,8 +65,24 @@
 			                <td><s:property value="direccion"></s:property></td>
 			                <td><s:property value="fechaInicio"></s:property></td>			                         
 			                <td>
-			                <a href="" class="btn btn-info" disabled>Editar</a>  
-			                <a href="" class="btn btn-danger" disabled>Eliminar</a>
+			                  
+				                <s:url id="myurl2" action="editarEventoAcademico">
+									<s:param name="id">
+										<s:property value="id"></s:property>
+									</s:param>
+								</s:url>
+								<s:a href="%{myurl2}">
+									<span  class="btn btn-warning">Editar</span>
+								</s:a>
+								
+								<s:url id="myurl3" action="borrarEventoAcademico">
+									<s:param name="id">
+										<s:property value="id"></s:property>
+									</s:param>
+								</s:url>
+								<s:a href="%{myurl3}" onclick="borrar()">
+									<span  class="btn btn-danger">Eliminar</span>
+								</s:a>
 			                </td>
 						
 			            </tr>

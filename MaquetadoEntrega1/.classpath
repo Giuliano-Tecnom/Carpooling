@@ -8,44 +8,9 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/EclipseLink 2.5.2">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_20">
 		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-			<attribute name="owner.project.facets" value="jpt.jpa"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Struts 2/asm-3.3.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Struts 2/asm-commons-3.3.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Struts 2/asm-tree-3.3.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Struts 2/commons-fileupload-1.2.2.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Struts 2/commons-io-2.0.1.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Struts 2/commons-lang3-3.1.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Struts 2/freemarker-2.3.19.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Struts 2/javassist-3.11.0.GA.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Struts 2/ognl-3.0.5.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Struts 2/struts2-convention-plugin-2.3.7.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Struts 2/struts2-core-2.3.7.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Struts 2/xwork-core-2.3.7.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/aopalliance-1.0.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/aspectjrt-1.8.2.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/aspectjweaver-1.6.11.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/spring-aop-4.1.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/spring-aspects-4.1.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/spring-beans-4.1.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/spring-context-4.1.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/spring-core-4.1.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/spring-expression-4.1.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/spring-jdbc-4.1.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/spring-orm-4.1.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/spring-test-4.1.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/spring-tx-4.1.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/spring-web-4.1.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/struts2-spring-plugin-2.3.15.1.jar"/>
-	<classpathentry kind="lib" path="E:/Mega/Licenciatura en Sistemas/3er año/Taller de Produccion de software - Java/JARs de Spring 4.12/spring-2.5.6.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>

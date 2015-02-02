@@ -25,9 +25,14 @@ public class Denuncia implements Serializable {
 	private boolean activo = false;
 	
 	@ManyToOne
-	@JoinColumn(name = "ID_USUARIO")
+	@JoinColumn(name = "ID_USUARIO_DIRIGIDA")
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Usuario dirigida;
+	
+	@ManyToOne
+	@JoinColumn(name = "ID_USUARIO_HIZO")
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	private Usuario hizo;
 	
 	private static final long serialVersionUID = 3389132037727561760L;
 
@@ -35,14 +40,16 @@ public class Denuncia implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Denuncia(String descripcion, Date fecha, boolean activo, Usuario dirigida) {
-		super();
-		this.descripcion = descripcion;
-		this.fecha = fecha;
-		this.activo = activo;
-		this.dirigida = dirigida;
-	}
+	
 
+	public Usuario getHizo() {
+		return hizo;
+	}
+	
+	public void setHizo(Usuario hizo) {
+		this.hizo = hizo;
+	}
+	
 	public long getId() {
 		return id;
 	}	

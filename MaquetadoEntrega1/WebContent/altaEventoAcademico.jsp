@@ -13,8 +13,7 @@
 			<span style="font-size: 24px;">Alta de evento</span> 
 		</div>
 		<div class="panel-body">
-			<form role="form" action="altaEventoAcademico" method="post"
-				style="margin-bottom: 4%">
+			<form role="form" action="altaEventoAcademico" method="post" style="margin-bottom: 4%">
 				<div class="form-group">
 					<label for="evento">Nombre del evento</label> <input type="text"
 						class="form-control" id="evento" name="nombre"

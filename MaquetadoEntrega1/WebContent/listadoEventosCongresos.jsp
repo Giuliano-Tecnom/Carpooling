@@ -65,7 +65,7 @@ $(document).ready( function () {
 									</s:param>
 									</s:url>
 									<s:a href="%{myurl}">
-										<span class="btn btn-success">Participar</span>
+										<span class="btn btn-success btn-block">Participar</span>
 									</s:a>
 								</s:if>
 								<s:elseif test="recorrido.asientosDisponibles == 0 && !recorrido.solicitaronUnirseAlRecorrido.contains(usuarioLogueado) && !recorrido.integrantesDelRecorrido.contains(usuarioLogueado)">
@@ -78,7 +78,7 @@ $(document).ready( function () {
 									</s:param>
 									</s:url>
 									<s:a href="%{myurl2}">
-										<span class="btn btn-warning">Darse de baja</span>
+										<span class="btn btn-warning btn-block">Darse de baja</span>
 									</s:a>
 								</s:elseif>
 								<s:else>
@@ -88,7 +88,7 @@ $(document).ready( function () {
 									</s:param>
 									</s:url>
 									<s:a href="%{myurl3}">
-										<span class="btn btn-danger">Cancelar suscripci&oacute;n</span>
+										<span class="btn btn-danger btn-block">Cancelar suscripci&oacute;n</span>
 									</s:a>
 								</s:else>
 								

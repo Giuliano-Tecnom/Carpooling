@@ -16,7 +16,7 @@
                           <a href="listadoEventosAcademicos"> Eventos / Congresos  </a>  
                       </li>                          
                       <li>  
-                          <a href="login" onclick="alert('Funcionalidad aun no implementada')"> Seccion de Quejas </a>  
+                          <a href="seccionQuejas.jsp"> Seccion de Quejas </a>  
                       </li>                    
                 </ul>
             </div>            

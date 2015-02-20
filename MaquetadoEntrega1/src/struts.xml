@@ -141,5 +141,10 @@
 	<result name="input" type="redirect"> login </result>
 </action>
 
+<action name="enviarEmail" method="enviar" class="EnviarEmailAction">
+	<result name="success"> seccionQuejas.jsp</result>
+	<result name="input"> seccionQuejas.jsp </result>
+</action>
+
 </package>
 </struts>

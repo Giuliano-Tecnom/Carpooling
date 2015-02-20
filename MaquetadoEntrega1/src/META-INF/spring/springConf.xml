@@ -40,6 +40,9 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd"
 		<property name="eventoAcademicoDAO" ref="eventoAcademico" />		
 	</bean>
 	
+	<bean id="EnviarEmailAction" class="actions.EnviarEmailAction" scope="prototype">
+	</bean>
+	
 	<bean id="CRUDRecorridoAction" class="actions.CRUDRecorridoAction" scope="prototype">
 		<property name="eventoAcademicoDAO" ref="eventoAcademico" />
 		<property name="usuarioDAO" ref="usuario" />

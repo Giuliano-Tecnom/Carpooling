@@ -216,7 +216,7 @@ public class CRUDRecorridoAction extends ActionSupport {
 		if(request.getSession().getAttribute("usuarioViajero") != null && request.getParameter("id") != null){
 			Long idRecorrido = Long.parseLong(request.getParameter("id"));
 			Recorrido recor = (Recorrido) recorridoDAO.find(idRecorrido);
-			recor.eliminarUsuario((Usuario)request.getSession().getAttribute("usuarioViajero"));
+			recor.eliminarUsuarioDelRecorrido((Usuario)request.getSession().getAttribute("usuarioViajero"));
 			recorridoDAO.update(recor);
 			return SUCCESS;
 		}else{
